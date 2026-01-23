@@ -1,0 +1,29 @@
+%% 
+
+% provide two vectors
+v = [ 1 1 0];
+w = [1 2 1];
+
+figure(1), clf, hold on
+
+% plot the "basis" vectors
+plot3([0 v(1)], [0 v(2)], [0 v(3)], 'r', 'LineWidth',2)
+plot3([0 w(1)], [0 w(2)], [0 w(3)], 'w', 'LineWidth',2)
+axis square, rotate3d on
+
+% Plot the subspace spanned by two vectors.
+% this code uses inline functions
+% and is validd for plane through the origin
+
+h = ezmesh( @(s,t)v(1)*s+w(1)*t, @(s,t)v(2)*s+w(2)*t, @(s,t)v(3)*s+w(3)*t);
+set(h,'FaceColor','g','cdata',ones(50))
+title('')
+
+% any vector defined as a linear combination of v and w
+% must also be in the plane
+u  = randn*v + randn*w;
+uh = plot3([0 u(1)], [0 u(2)], [0 u(3)],'b','LineWidth',2);
+
+% now replace that line with some other random line
+u = randn*v + randn*w;
+set(uh,'XData',[0 u(1)],'YData',[0, u(2)],'ZData',[0 u(3)])
