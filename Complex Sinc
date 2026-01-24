@@ -1,0 +1,34 @@
+%% Complex Sinc Function
+% define real and imaginary part
+x = linspace(-8,8,50);
+y = linspace(-8,8,49);
+
+% initialize surface
+sincsurf = zeros(length(x), length(y));
+
+% implement the formula in loop
+%for i = 1:length(x)
+%    for j = 1:length(y)
+
+        % complex number from x (real) and y (imaginary)
+%        z = complex( x(i), y(j) );
+
+        % compute the surface value at this point
+%        sincsurf(i, j) = sin(z)/z;
+%    end
+%end
+
+%
+z = (x + 1i*y')';
+sincsurf = sin(z) ./ z;
+
+% the function we want to plot
+
+f2plot = real(sincsurf) - abs(sincsurf);
+
+% now show the surface
+figure(2), clf
+surf(y,x,f2plot)
+shading interp , rotate3d on
+xlabel('Real'), ylabel('Imag'), zlabel('f(z)')
+axis square
