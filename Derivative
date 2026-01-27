@@ -1,0 +1,18 @@
+%%
+
+% length of data series
+n = 100;
+t = (0:n-1)/n;
+
+% n-point signals
+x = randn(1,n) + linspace(0,10,n);
+
+% first and second derivative
+dx = diff(x);
+ddx = diff(x,2);
+
+figure(1)
+plot(t,x,'linew',2)
+hold on 
+plot(t(1:end-1),dx,'linew')
+plot(t(1:end-2),ddx,'linew')
